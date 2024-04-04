@@ -1,5 +1,4 @@
 .container {
-  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -11,6 +10,9 @@
 }
 .slider-content {
   margin: 0 40px;
+}
+.card-wrapper {
+  padding-right: 10px;
 }
 .card-slider {
   width: 320px;
