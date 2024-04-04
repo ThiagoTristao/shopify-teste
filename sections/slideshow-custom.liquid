@@ -1,0 +1,74 @@
+<link
+  rel="stylesheet"
+  href="{{ 'slideshow-custom.css' | asset_url }}"
+  media="print"
+  onload="this.media='all'">
+<div class="container">
+  <div class="slider-container">
+    <div class="slide-content slideshow banner banne">
+      {% for block in section.blocks %}
+        <div class="card-wrapper">
+          <div class="card-slider">
+            {% if block.settings.image %}
+              <div class="image-content">
+                <div class="card-image">
+                  {{ block.settings.image | image_url: width: 100 | image_tag: style: 'height:100%; width: 100%; object-fit:cover; border-radius:50%' }}
+                </div>
+              </div>
+            {% endif %}
+            <div class="card-content">
+              {% if block.settings.description != blank %}
+                <p class="description">{{ block.settings.description }}</p>
+              {% endif %}
+              {% if block.settings.name != blank %}
+                <h2 class="name">{{ block.settings.name }}</h2>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+
+
+{% schema %}
+  {
+    "name": "custom slide show",
+    "tag": "section",
+    "class": "section",
+    "blocks": [
+      {
+        "type": "testimonial",
+        "name": "Testimonial",
+        "limit": 5,
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "t:sections.slideshow.blocks.slide.settings.image.label"
+          }, {
+            "type": "checkbox",
+            "id": "show_stars",
+            "label": "Show stars",
+            "default": true
+          }, {
+            "type": "textarea",
+            "id": "description",
+            "label": "Description"
+          }, {
+            "type": "text",
+            "id": "name",
+            "label": "Name"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "custom slide show"
+      }
+    ]
+  }
+{% endschema %}
